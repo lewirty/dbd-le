@@ -8,26 +8,28 @@ inputSlider.oninput = (function () {
 })
 
 const playButton = document.querySelector("#playButton");
-
+const playIcon = document.querySelector("#playIcon");
+const pauseIcon = document.querySelector("#pauseIcon");
 const audioPlayer = document.querySelector("#audioPlayer");
 
-const playIcon = document.querySelector("#playIcon")
-
+// console.log(playButton);
+// console.log(playIcon);
+// console.log(pauseIcon);
+// console.log(audioPlayer);
 let playing = false;
 
 playButton.addEventListener("click", function () {
     if (playing) {
         audioPlayer.pause();
-        playIcon.setAttribute("data-icon", "play");
+        playIcon.style.display = "inline-block";
+        pauseIcon.style.display = "none"; 
     } else {
         audioPlayer.play();
-        playIcon.setAttribute("data-icon", "pause");
+        playIcon.style.display = "none"; 
+        pauseIcon.style.display = "inline-block"; 
     }
-
     playing = !playing;
 });
-
-console.log(playButton, audioPlayer, playIcon)
 
 let killers = [
 "The Hillbilly",
