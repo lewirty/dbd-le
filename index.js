@@ -11,6 +11,8 @@ inputSlider.oninput = (function () {
 const playButton = document.querySelector("#playButton");
 const playIcon = document.querySelector("#playIcon");
 const pauseIcon = document.querySelector("#pauseIcon");
+const playIcon = document.querySelector("#playIcon");
+const pauseIcon = document.querySelector("#pauseIcon");
 const audioPlayer = document.querySelector("#audioPlayer");
 
 let playing = false;
@@ -27,8 +29,6 @@ playButton.addEventListener("click", function () {
     }
     playing = !playing;
 });
-
-console.log(playButton, audioPlayer, playIcon)
 
 let killers = [
     "The Hillbilly",
