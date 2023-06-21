@@ -11,8 +11,6 @@ inputSlider.oninput = (function () {
 const playButton = document.querySelector("#playButton");
 const playIcon = document.querySelector("#playIcon");
 const pauseIcon = document.querySelector("#pauseIcon");
-const playIcon = document.querySelector("#playIcon");
-const pauseIcon = document.querySelector("#pauseIcon");
 const audioPlayer = document.querySelector("#audioPlayer");
 
 let playing = false;
