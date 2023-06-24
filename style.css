@@ -167,6 +167,7 @@ ul{
     flex-direction: column;
 }
 .list-items{
+    cursor: pointer;
     width: 218px;
     font-size: 20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -177,9 +178,24 @@ ul{
     margin: 1px;
     border: 1px solid black;
     border-radius: 5px;
+    transition: 0.3s;
 }
 .list-items:hover{
     background-color: #1a1a1a;
+}
+.killer-portrait{
+    display: none;
+}
+.killer-portrait.certo{
+    color: green;
+}
+.killer-portrait.errado{
+    color: red;
+}
+.killer-title{
+    font-family: monospace;
+    font-size: 28px;
+    margin: 0px;
 }
 
 @media (max-width: 500px){
