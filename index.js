@@ -2,7 +2,7 @@ let correctKiller = 'The Clown';
 
 let killerPortrait = document.querySelector("#killer-portrait")
 
-let rightAnswerAudio = document.querySelector("#confetti")
+let rightAnswerAudio = document.querySelector("#confetti");
 
 let submitIcon = document.querySelector(".submitBtn");
 
@@ -108,9 +108,6 @@ let playAndPause2 = playAndPause(audioPlayer2, playIcon2, pauseIcon2, lockIcon1)
 let playAndPause3 = playAndPause(audioPlayer3, playIcon3, pauseIcon3, lockIcon2);
 let playAndPause4 = playAndPause(audioPlayer4, playIcon4, pauseIcon4, lockIcon3);
 let audioPlayers = [audioPlayer1, audioPlayer2, audioPlayer3, audioPlayer4];
-let playButtons = [playButton1, playButton2, playButton3, playButton4];
-let playIcons = [playIcon1, playIcon2, playIcon3, playIcon4];
-let pauseIcons = [pauseIcon1, pauseIcon2, pauseIcon3, pauseIcon4];
 
 playButton1.addEventListener('click', playAndPause1);
 playButton2.addEventListener('click', playAndPause2);
@@ -151,7 +148,7 @@ form.addEventListener('submit', function (event) {
         submitIcon.style.display = "none";
         killerPortrait.style.display = "block";
         killerPortrait.classList.add('certo')
-        listItem.style.display = "none";
+        playAudioConfetti();
     } else {
         audioPlayers.forEach(function(player) {
             player.pause();
@@ -207,14 +204,16 @@ form.addEventListener('submit', function (event) {
             killerPortrait.style.display = "block";
             killerPortrait.classList.add('errado')
             submitIcon.style.display = "none";
-            listItem.style.display = "none";
         }
         else {
             submitIcon.style.display = "inline-block";
-            listItem.style.display = "inline-block";
         }
     }
 })
+
+function playAudioConfetti() {
+    rightAnswerAudio.play();
+}
 
 let killers = [
     "Default Theme",
