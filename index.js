@@ -2,6 +2,41 @@ let correctKiller = 'The Clown';
 
 let killerPortrait = document.querySelector("#killer-portrait")
 
+let rightAnswerAudio = document.querySelector("#confetti")
+
+let submitIcon = document.querySelector(".submitBtn");
+
+let input = document.querySelector(".inputAnswer")
+
+input.addEventListener('keyup', function() {
+    removeElements();
+    let counter = 0;
+
+    for (let i of sortedNames) {
+        if (i.toLowerCase().includes(input.value.toLowerCase())
+            && input.value != '') {
+
+            let listItem = document.createElement('li');
+
+            listItem.classList.add('list-items');
+            listItem.setAttribute('onclick', "displayNames('" + i + "')")
+
+            let word = i.replace(new RegExp(input.value, 'gi'), "<b>$&</b>");
+
+            listItem.innerHTML = word;
+            document.querySelector(".list").appendChild(listItem);
+
+            listItem.addEventListener('click', function removeList() {
+                listItem.remove();
+                input.select();
+            })
+
+            counter++;
+            if (counter === 5) break;
+        }
+    }
+});
+
 const slideValue = document.querySelector("#volume");
 
 const inputSlider = document.querySelector("#slider");
@@ -44,15 +79,20 @@ function playAndPause(audioPlayer, playIcon, pauseIcon, lockIcon) {
 
     return function () {
         if (playing) {
+            audioPlayers.forEach(function(player) {
+                player.pause();
+            })
             audioPlayer.pause();
             playIcon.style.display = "inline-block";
             pauseIcon.style.display = "none";
         } else {
+            audioPlayers.forEach(function(player) {
+                player.pause();
+            })
             audioPlayer.play();
             playIcon.style.display = "none";
             pauseIcon.style.display = "inline-block";
         } if (lockIcon && lockIcon.style.display === 'inline-block') {
-            console.log('sera')
             audioPlayer.pause();
             lockIcon.style.display = "inline-block";
             playIcon.style.display = "none";
@@ -68,6 +108,9 @@ let playAndPause2 = playAndPause(audioPlayer2, playIcon2, pauseIcon2, lockIcon1)
 let playAndPause3 = playAndPause(audioPlayer3, playIcon3, pauseIcon3, lockIcon2);
 let playAndPause4 = playAndPause(audioPlayer4, playIcon4, pauseIcon4, lockIcon3);
 let audioPlayers = [audioPlayer1, audioPlayer2, audioPlayer3, audioPlayer4];
+let playButtons = [playButton1, playButton2, playButton3, playButton4];
+let playIcons = [playIcon1, playIcon2, playIcon3, playIcon4];
+let pauseIcons = [pauseIcon1, pauseIcon2, pauseIcon3, pauseIcon4];
 
 playButton1.addEventListener('click', playAndPause1);
 playButton2.addEventListener('click', playAndPause2);
@@ -105,6 +148,7 @@ form.addEventListener('submit', function (event) {
         playIcon3.style.display = "inline-block";
         playIcon4.style.display = "inline-block";
         input.style.display = "none";
+        submitIcon.style.display = "none";
         killerPortrait.style.display = "block";
         killerPortrait.classList.add('certo')
         listItem.style.display = "none";
@@ -162,7 +206,12 @@ form.addEventListener('submit', function (event) {
             input.style.display = "none";
             killerPortrait.style.display = "block";
             killerPortrait.classList.add('errado')
+            submitIcon.style.display = "none";
             listItem.style.display = "none";
+        }
+        else {
+            submitIcon.style.display = "inline-block";
+            listItem.style.display = "inline-block";
         }
     }
 })
@@ -198,35 +247,10 @@ let killers = [
 
 let sortedNames = killers.sort();
 
-let input = document.querySelector(".inputAnswer")
 
-input.addEventListener('keyup', function() {
-    removeElements();
-    let counter = 0;
-
-    for (let i of sortedNames) {
-        if (i.toLowerCase().includes(input.value.toLowerCase())
-            && input.value != '') {
-
-            let listItem = document.createElement('li');
-
-            listItem.classList.add('list-items');
-            listItem.setAttribute('onclick', "displayNames('" + i + "')")
-
-            let word = i.replace(new RegExp(input.value, 'gi'), "<b>$&</b>");
-
-            listItem.innerHTML = word;
-            document.querySelector(".list").appendChild(listItem);
-
-            listItem.addEventListener('click', function removeList() {
-                listItem.remove();
-                input.select();
-            })
-
-            counter++;
-            if (counter === 5) break;
-        }
-    }
+submitIcon.addEventListener('click', function() {
+    preventDefault();
+    input.form.submit();
 });
 
 function displayNames(value) {

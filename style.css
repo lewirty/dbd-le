@@ -197,6 +197,19 @@ ul{
     font-size: 28px;
     margin: 0px;
 }
+.submitBtn{
+    cursor: pointer;
+    display: inline-block;
+    background-color: transparent;
+    color: #FFF;
+    border: 0px;
+    font-size: 32px;
+    margin-left: 5px;
+    transition: 0.3s;
+}
+.submitBtn:hover{
+    font-size: 36px;
+}
 
 @media (max-width: 500px){
     .containerHome{
